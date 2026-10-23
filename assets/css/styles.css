@@ -1,0 +1,122 @@
+:root {
+    --ts-ink: #121826;
+    --ts-slate: #2B3342;
+    --ts-white: #FFFFFF;
+    --ts-mist: #F4F7FA;
+    --ts-blue: #2D7FDB;
+    --ts-cyan: #22C1D6;
+    --ts-green: #86D05A;
+    --ts-orange: #F58A1F;
+    --ts-blue-deep: #1F63B8;
+    --gradient-brand: linear-gradient(135deg, #2B3342 0%, #121826 100%);
+    --gradient-spiral: linear-gradient(90deg, #2D7FDB, #22C1D6, #86D05A, #F58A1F);
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--ts-ink);
+    background-color: var(--ts-ink);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Enfoque accesible por teclado WCAG */
+.focus-ring-dark:focus-visible {
+    outline: 3px solid var(--ts-cyan) !important;
+    outline-offset: 3px !important;
+}
+
+.focus-ring-light:focus-visible {
+    outline: 3px solid var(--ts-blue-deep) !important;
+    outline-offset: 3px !important;
+}
+
+/* Respeto estricto a prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Línea decorativa espiral */
+.border-gradient-spiral {
+    border-image: var(--gradient-spiral) 1;
+}
+
+.bg-gradient-spiral {
+    background: var(--gradient-spiral);
+}
+
+.bg-gradient-brand {
+    background: var(--gradient-brand);
+}
+
+/* Texto con degradado espiral permitido en títulos grandes sobre fondo oscuro */
+.text-gradient-spiral {
+    background: var(--gradient-spiral);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Skip Link accesible */
+.skip-to-content {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    z-index: 100;
+    background: var(--ts-orange);
+    color: var(--ts-ink);
+    padding: 0.75rem 1.25rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    transition: top 0.2s ease-in-out;
+    text-decoration: none;
+}
+
+.skip-to-content:focus {
+    top: 1rem;
+    outline: 3px solid var(--ts-cyan);
+}
+
+/* ==========================================================================
+   MORPHING DIALOG (Inspirado en Motion Primitives MorphingDialog)
+   ========================================================================== */
+#morphing-dialog-content {
+    will-change: transform, border-radius;
+    box-shadow: 0 25px 50px -12px rgba(18, 24, 38, 0.35), 0 0 0 1px rgba(18, 24, 38, 0.05);
+}
+
+/* Scrollbar estilizada y sutil para el modal */
+#morphing-dialog-content ::-webkit-scrollbar {
+    width: 6px;
+}
+
+#morphing-dialog-content ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 9999px;
+}
+
+#morphing-dialog-content ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+}
+
+#morphing-dialog-content ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Efecto hover suave para el botón de expansión (+) */
+.morph-dialog-btn:hover i {
+    transform: rotate(90deg);
+}
+
+.morph-dialog-btn i {
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
